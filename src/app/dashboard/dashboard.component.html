@@ -1,0 +1,104 @@
+<div class="ui stackable three column grid" cdkDropListGroup>
+  <div class="column">
+    <div sui-segment suiColour="green">
+      <h2>New Task</h2>
+      <div
+        sui-list
+        suiRelaxation="relaxed"
+        [suiDivided]="true"
+        class="tasks-list"
+        cdkDropList
+        [cdkDropListData]="newTasks"
+        (cdkDropListDropped)="onTaskDrop($event)"
+      >
+        <div *ngIf="newTasks.length == 0" class="item">
+          <div class="description">No new task</div>
+        </div>
+        <div sui-card suiListItem *ngFor="let task of newTasks" cdkDrag>
+          <div suiCardContent>
+            <div suiCardHeader>{{ task.title }}</div>
+            <div suiCardDescription>{{ task.description }}</div>
+          </div>
+          <div suiCardExtra suiCardContent>
+            <button sui-button suiColour="red">
+              <i
+                sui-icon
+                suiIconType="trash"
+                (click)="deleteTask(task, 'new')"
+              ></i>
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div sui-segment suiColour="yellow">
+      <h2>In Progress</h2>
+      <div
+        sui-list
+        suiRelaxation="relaxed"
+        [suiDivided]="true"
+        class="tasks-list"
+        cdkDropList
+        [cdkDropListData]="inProgressTasks"
+        (cdkDropListDropped)="onTaskDrop($event)"
+      >
+        <div *ngIf="inProgressTasks.length == 0" class="item">
+          <div class="description">No task in progress</div>
+        </div>
+        <div sui-card suiListItem *ngFor="let task of inProgressTasks" cdkDrag>
+          <div suiCardContent>
+            <div suiCardHeader>{{ task.title }}</div>
+            <div suiCardDescription>{{ task.description }}</div>
+          </div>
+          <div suiCardExtra suiCardContent>
+            <button sui-button suiColour="red">
+              <i
+                sui-icon
+                suiIconType="trash"
+                (click)="deleteTask(task, 'inProgress')"
+              ></i>
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div sui-segment suiColour="red">
+      <h2>Completed</h2>
+      <div
+        sui-list
+        suiRelaxation="relaxed"
+        [suiDivided]="true"
+        class="tasks-list"
+        cdkDropList
+        [cdkDropListData]="completedTasks"
+        (cdkDropListDropped)="onTaskDrop($event)"
+      >
+        <div *ngIf="completedTasks.length == 0" class="item">
+          <div class="description">No task is completed</div>
+        </div>
+        <div sui-card suiListItem *ngFor="let task of completedTasks" cdkDrag>
+          <div suiCardContent>
+            <div suiCardHeader>{{ task.title }}</div>
+            <div suiCardDescription>{{ task.description }}</div>
+          </div>
+          <div suiCardExtra suiCardContent>
+            <button sui-button suiColour="red">
+              <i
+                sui-icon
+                suiIconType="trash"
+                (click)="deleteTask(task, 'done')"
+              ></i>
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div sui-segment>
+  <h2 sui-header>Create New Task</h2>
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" sui-form>
+    <div suiFormField>
+      <label>Task Title</label>
+      <input
+        type="text"
+        formControlName="title"
+        placeholder="Enter task title"
+      />
+      <div
+        *ngIf="(submitted || taskForm.controls['title'].touched) && taskForm.controls['title'].errors?.['required']"
+        class="ui pointing red basic label"
+      >
+        Enter a title for your task
+      </div>
+    </div>
+    <div suiFormField>
+      <label>Task Description</label>
+      <textarea
+        formControlName="description"
+        placeholder="Enter task description"
+      ></textarea>
+      <div
+        *ngIf="(submitted || taskForm.controls['description'].touched) && taskForm.controls['description'].errors?.['required']"
+        class="ui pointing red basic label"
+      >
+        Enter task description
+      </div>
+      <div
+        *ngIf="(submitted || taskForm.controls['description'].touched) && taskForm.controls['description'].errors?.['maxWords']"
+        class="ui pointing red basic label"
+      >
+        Description should be not be more than 15 words
+      </div>
+    </div>
+    <button
+      [suiLoading]="loading"
+      sui-button
+      suiEmphasis="secondary"
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>
+</div>
